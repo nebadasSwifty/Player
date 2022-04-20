@@ -85,12 +85,12 @@ class FirstSongPlayController: UIViewController {
         nowDurationLabel.text = NSString(format: "%02d:%02d", minutes, seconds) as String
         //отсчет до конца воспроизведения
         let difftime = player.currentTime - durationSong
-        let minutes1 = Int(difftime / 60)
-        let seconds1 = Int(-difftime.truncatingRemainder(dividingBy: 60))
-        durationLabel.text = NSString(format: "%02d:%02d", minutes1, seconds1) as String
+        let minutesDuration = Int(difftime / 60)
+        let secondsDuration = Int(-difftime.truncatingRemainder(dividingBy: 60))
+        durationLabel.text = NSString(format: "%02d:%02d", minutesDuration, secondsDuration) as String
     }
     //функция обновления слайдера по текущему времени песни
-    @objc func updateSlider(){
+    @objc func updateSlider() {
            durationSlider.value = Float(player.currentTime)
        }
 }
