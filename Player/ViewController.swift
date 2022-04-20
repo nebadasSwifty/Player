@@ -22,8 +22,14 @@ class ViewController: UIViewController {
         //делаем границы для вью с песнями
         atlView.layer.borderColor = UIColor.gray.cgColor
         atlView.layer.borderWidth = 0.3
+        atlView.layer.cornerRadius = 15
+        //делаем скругление для картинки
+        atlImage.layer.cornerRadius = 15
         sakoView.layer.borderColor = UIColor.gray.cgColor
+        sakoView.layer.cornerRadius = 15
         sakoView.layer.borderWidth = 0.3
+        //делаем скругление для второй картинки
+        sakoImge.layer.cornerRadius = 15
     }
     //передаем данные с первого экрана на второй
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,7 +47,7 @@ class ViewController: UIViewController {
             //записываем данные с первой вью в переменные второй вью
                 playerController.nameSong = sakoLabel.text!
                 playerController.image = sakoImge.image!
-                playerController.durationSong = "5:52"
+                playerController.durationSong = 353
                 //запуск воспроизведения при переходе
                 playerController.player.play()
             }
@@ -59,7 +65,7 @@ class ViewController: UIViewController {
                 //записываем данные с первой вью в переменные второй вью
                 playerController.nameSong = atlLabel.text!
                 playerController.image = atlImage.image!
-                playerController.durationSong = "4:02"
+                playerController.durationSong = 242
                 //запуск воспроизведения при переходе
                 playerController.player.play()
             }
@@ -67,4 +73,5 @@ class ViewController: UIViewController {
     }
 
 }
+
 

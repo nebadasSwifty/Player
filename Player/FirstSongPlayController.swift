@@ -21,7 +21,7 @@ class FirstSongPlayController: UIViewController {
     var player = AVAudioPlayer()
     //создаем переменные для передачи данных между экранами
     var nameSong = ""
-    var durationSong = ""
+    var durationSong = Double()
     var image = UIImage()
     //создаем переменную таймера для слайдера и времени песни
     var timer = Timer()
@@ -38,8 +38,9 @@ class FirstSongPlayController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.0001, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
         // присваиваем данные для лейблов и выставляем картинку
         nameSongLabel.text = nameSong
-        durationLabel.text = durationSong
         imageArt.image = image
+        //делаем скругление для картинки песни
+        imageArt.layer.cornerRadius = 10
         //задаем обновление лейбла для отображения времени с начала песни
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
     }
@@ -82,6 +83,11 @@ class FirstSongPlayController: UIViewController {
         let minutes = Int(timePlayed / 60)
         let seconds = Int(timePlayed.truncatingRemainder(dividingBy: 60))
         nowDurationLabel.text = NSString(format: "%02d:%02d", minutes, seconds) as String
+        //отсчет до конца воспроизведения
+        let difftime = player.currentTime - durationSong
+        let minutes1 = Int(difftime / 60)
+        let seconds1 = Int(-difftime.truncatingRemainder(dividingBy: 60))
+        durationLabel.text = NSString(format: "%02d:%02d", minutes1, seconds1) as String
     }
     //функция обновления слайдера по текущему времени песни
     @objc func updateSlider(){
